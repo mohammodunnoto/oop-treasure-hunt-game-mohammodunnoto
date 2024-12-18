@@ -1,27 +1,40 @@
 class Player():
-    def __init__(self, given_name):
-        self.name = given_name
+    def __init__(self, name, age, height, weight):
+        self.name = name
+        self.age = age
+        self.height = height
+        self.weight = weight
         self.health = 100
-        self.energy = 100
-        self.inventory_max_weight = 50
+        self.inventory_max_weight = 15000
+        self.inventory_weight = []
         self.inventory = []
-        # add more atributes as needed
 
     def calculate_inventory_size(self):
-        # write code here
-        pass
+        sum = 0
+        for i in self.inventory_weight:
+            sum += i
+        return sum
 
-    def add_item(self, item_instance):
+    def pick_up_item(self, item_instance):
         if self.calculate_inventory_size() > self.inventory_max_weight:
             self.inventory.append(item_instance)
+            self.inventory_weight.append(item_instance.weight)
         else:
-            print("Your inventory is full...")
+            print("Your inventory is full. You can't pick this item up.")
 
-    def use_item(self, item_instance):
-        if item_instance.type == "food":
-            self.energy += 50
-        elif item_instance.type == "medicine":
-            self.health += 50
-        # add more code here
+    def use_medicine(self, item_instance):
+        if item_instance.type.lower() == "medicine":
+            self.health += item_instance.heal
+        
+    def fight(self, enemy_instance):
+        pass
 
-    # add more methods as needed
+    def npc_speak(self, person_instance):
+        while True:
+            choice = input("Would you like to speak to this person?")
+            if choice.lower == "yes":
+                
+            if choice.lower == "no":
+                print(f"You walked away from {person_instance.name}")
+            else: 
+                print("That is not an option.")

@@ -1,6 +1,6 @@
 from place import Place
 from player import Player
-from item import Item
+from item import Item, Melee, Medicine
 
 class Game():
     def __init__(self):
